@@ -1,0 +1,58 @@
+
+{
+    "cube-t-b/": {
+        "1.0.3-rc9-723%2Bdev_gbbf1d56c-g4b815d4/": {},
+        "1.0.6-rc42/": {
+            "cube-image/": {
+                "sam-ba": [
+                    "at91bootstrap.bin",
+                    "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240322172305-1.0.6-rc42-.ubi",
+                    "u-boot.bin"
+                ],
+                "sam-ba-100hz": [
+                    "at91bootstrap.bin",
+                    "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240325103705.100hz-scheduler-1.0.6-rc42-.ubi",
+                    "u-boot.bin"
+                ]
+            },
+            "cube-transport-image/": {
+                "sam-ba": [
+                    "at91bootstrap.bin",
+                    "cube-transport-image-cube-t-b.ubifs.cube-transport-image-cube-t-b-20240325093756-1.0.6-rc42-.ubi",
+                    "u-boot.bin"
+                ],
+                "sam-ba-100hz": [
+                    "at91bootstrap.bin",
+                    "cube-transport-image-cube-t-b.ubifs.cube-transport-image-cube-t-b-20240325110331.100hz-scheduler-1.0.6-rc42-.ubi",
+                    "u-boot.bin"
+                ]
+            }
+        },
+        "1.0.6-rc43/": {
+            "cube-image/": {
+                "sam-ba": [
+                    "at91bootstrap.bin",
+                    "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240524171620-1.0.6-rc43-.ubi",
+                    "u-boot.bin"
+                ],
+                "sam-ba-100hz": [
+                    "at91bootstrap.bin",
+                    "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240524180603.100hz-scheduler-1.0.6-rc43-.ubi",
+                    "u-boot.bin"
+                ]
+            },
+            "cube-transport-image/": {
+                "sam-ba": [
+                    "at91bootstrap.bin",
+                    "cube-transport-image-cube-t-b.ubifs.cube-transport-image-cube-t-b-20240524173238-1.0.6-rc43-.ubi",
+                    "u-boot.bin"
+                ],
+                "sam-ba-100hz": [
+                    "at91bootstrap.bin",
+                    "cube-transport-image-cube-t-b.ubifs.cube-transport-image-cube-t-b-20240524182217.100hz-scheduler-1.0.6-rc43-.ubi",
+                    "u-boot.bin"
+                ]
+            }
+        }
+    }
+}
