@@ -74,53 +74,100 @@ def check_file_struct(file_struct : str):
     return data
 
 
-def search_new_links(links : list):
-    pass
+def search_new_links(links_list : list):
+    """
+    Фнукция делает get запрос по адресу указанному в параметре linls_list спику и возвращает список всех ссылкок по указанному адресу, 
+    если в списке ошибка данных вернет спиок c одним занчением "Error links_list, если не удалось выполнить get запрос вернет None
+    
+    Параметры:
+    links_list (list): пример: ["http://10.125.0.41/artifactory/aQsi-cube/release/cube-d/", "1.0.6-rc42/", "cube_image/"]
+    
+    Возвращает:
+    list: если ошибка типа данных в ссылке : ["error", link, type(link), itter] -> "error": текст что ошибка, link: значение из за которой произошла ошибка, type(link): тип данных значения, itter: номер элемента в списке, начиная с 0.
+    list: если нет ошибок вернет список ссылок со страницы.
+    None: если не удалось выполнить get запрос
+    """
+    links_str : str = ""
+    itter = 0
+    logs.debug(f"links_list: {links_list}")
+    for link in links_list:
+        if type(link) != str:
+            logs.debug(f"Error link, {link} is not type str/ WTF??")
+            return ["error", link, type(link), itter]
+        else:
+            links_str = links_str + link
+        itter = itter + 1
+    
+    return_list_links_on_page : list | None = getting_links(links_str, links_str)
+
+    if return_list_links_on_page is None:
+        logs.debug(f"return_list_links_on_page is None {return_list_links_on_page}")
+        return return_list_links_on_page
+    
+    for link_on_page in return_list_links_on_page:
+        if link_on_page == "../":
+            logs.debug(f"removing value: '{link_on_page}' from response")
+            return_list_links_on_page.remove(link_on_page)
+
+    return return_list_links_on_page
+        
+
+def populating_the_dictionary_with_get_queries(main_link : list, type_cube : str, data_from_file_struct : dict) -> dict:
+    test_dict = {}
+    test_dict["sam-ba"] = ["1", "2", "3"]
+    test_dict["sam-ba-100hz"] = ["1", "2", "3"]
+    
+    main_link.append(type_cube)
+    logs.debug(f"main_link: {main_link}")
+    list_links_on_page : list | None = search_new_links(main_link)
+    logs.debug(f"list_links_on_page: {list_links_on_page}")
+    if list_links_on_page is None:
+        return list_links_on_page
+    for item in list_links_on_page:
+        # if item is not data_from_file_struct:
+        logs.debug(f"item is not data_from_file_struct: {item}")
+        if item[-1] == "/":
+            logs.debug(f"item[-1] == / {item[-1]}")
+            data_from_file_struct[item] = {}
+            logs.debug(f"create item: {item} {data_from_file_struct[item]}")
+            data_from_file_struct[item] = populating_the_dictionary_with_get_queries(main_link, item, data_from_file_struct[item])
+        else:
+            # написать фнукцию раскидывающую по версия самбы и сву пакеты пока типо она тут есть, и возвращает готовый словарь такого толка data_from_file_struct[type_cube] 
+            logs.debug(f"return test_dict")
+            return test_dict
+            # data_from_file_struct[item] = populating_the_dictionary_with_get_queries(main_link, item, data_from_file_struct[item])
+        main_link.pop()
+
+    return data_from_file_struct
+                
+    # file_struct : dict = data_from_file_struct[type_cube]
+
+    # if list_links_on_page is None:
+    #     pass
+    # elif list_links_on_page[0] == "error":
+    #     pass
+    
+    
+    
+
+
 
 def main():
     load_dotenv()
-    URL_T_B = os.getenv("URL_T_B")
-    URL_D = os.getenv("URL_D")
+    URL_T_B = os.getenv("URL")
+    # URL_D = os.getenv("URL_D")
     FILE_STRUCT = os.getenv("FILE_STRUCT")
 
-    cube_t_b_links_to_versions = getting_links(URL_T_B, "cube-t-b")
+    # cube_t_b_links_to_versions = getting_links(URL_T_B, "cube-t-b/")
     # cube_d_links_to_versions = getting_links(URL_D, "cube-d")
 
     data_from_file_struct = check_file_struct(FILE_STRUCT)
     if len(data_from_file_struct) == 0:
         logs.info("File_struct not found? Creating")
-        data_from_file_struct["cube-t-b/"] = {}
+        list_url = ["http://10.125.0.41/artifactory/aQsi-cube/prerelease/"]
+        data_from_file_struct = populating_the_dictionary_with_get_queries(list_url, "cube-t-b/", data_from_file_struct)
 
-        for version in cube_t_b_links_to_versions:
-            data_from_file_struct["cube-t-b/"][version] = {}
-            cube_t_b_links_to_images = getting_links(URL_T_B + version, f"cube-t-b vers: {version}")
-
-            for link_image in cube_t_b_links_to_images:
-                if link_image == "cube-image/" or link_image == "cube-transport-image/":
-                    data_from_file_struct["cube-t-b/"][version][link_image] = {}
-                    cube_t_b_links_to_all_files = getting_links(URL_T_B + version + link_image, f"cube-t-b vers: {version} | image: {link_image}")
-                    if cube_t_b_links_to_all_files is not None:  #  Добавить проверок на отуствие ероров и вообще переделать на переиспользование так как тут явно их можно прееиспользовать но как точно вопрос
-                        data_from_file_struct["cube-t-b/"][version][link_image]["sam-ba"] = []
-                        data_from_file_struct["cube-t-b/"][version][link_image]["sam-ba-100hz"] = [] 
-                        key_ubi = 0
-                        key_ubi_100hz = 0
-                        for link_to_file in cube_t_b_links_to_all_files:
-                            if "at91bootstrap.bin" in link_to_file:
-                                data_from_file_struct["cube-t-b/"][version][link_image]["sam-ba"].append(link_to_file)
-                                data_from_file_struct["cube-t-b/"][version][link_image]["sam-ba-100hz"].append(link_to_file)
-                            elif ".ubi" in link_to_file:
-                                if "100hz" in link_to_file and key_ubi_100hz == 0:
-                                    data_from_file_struct["cube-t-b/"][version][link_image]["sam-ba-100hz"].append(link_to_file)
-                                    key_ubi_100hz = 1
-                                else:
-                                    if key_ubi == 0:
-                                        data_from_file_struct["cube-t-b/"][version][link_image]["sam-ba"].append(link_to_file)
-                                        key_ubi = 1
-                            elif "u-boot.bin" in link_to_file:
-                                data_from_file_struct["cube-t-b/"][version][link_image]["sam-ba"].append(link_to_file)
-                                data_from_file_struct["cube-t-b/"][version][link_image]["sam-ba-100hz"].append(link_to_file)
-
-    json_str = json.dumps(data_from_file_struct, indent=4)
+    json_str = json.dumps(data_from_file_struct, indent=8)
     print(json_str)
 
 
