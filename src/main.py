@@ -115,6 +115,12 @@ def check_file_struct(file_name : str) -> dict:
     return data
 
 
+def write_dict_to_json_file(data, filename):
+    """Записывает словарь в JSON файл, заменяя существующее содержимое."""
+    with open(filename, 'w') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+
 def search_new_links(links_list : list):
     """
     Фнукция делает get запрос по адресу указанному в параметре linls_list спику и возвращает список всех ссылкок по указанному адресу, 
@@ -180,7 +186,8 @@ def file_type_check(item : str, data_from_file_struct : list):  #  подкгр�
         logs.debug(f"-----------file_type_check-----------")
         logs.debug(f"{name_group_file_name} and {rules_all_files}")
         for number_file, rule_for_file in rules_all_files.items():                   # rule_for_file   -> [[1, "at91bootstrap"], [1, ".swu.bin" ], [0, "100hz"]]
-            flag : int = 1
+            flag : int = 0
+            sum_flags : int = 0
             for rule in rule_for_file:
                 if rule[0] == 1:   #   true то есть значение должно быть
                     if rule[1] in item:
@@ -192,7 +199,10 @@ def file_type_check(item : str, data_from_file_struct : list):  #  подкгр�
                         flag = 1
                     else:
                         flag = 0
-            if flag == 1:
+                sum_flags = sum_flags + flag
+                logs.debug(f"rule now: {rule} and item: {item} | flag: {flag}")
+
+            if sum_flags == len(rule_for_file):
                 if name_group_file_name not in data_from_file_struct:
                     logs.debug(f"file_type_check | {name_group_file_name} not in {data_from_file_struct}")
                     data_from_file_struct[name_group_file_name] = {number_file: item}
@@ -224,47 +234,19 @@ def populating_the_dictionary_with_get_queries(main_link : list, type_link : str
             logs.debug(f"populating_the_dictionary_with_get_queries | create item: {item} {data_from_file_struct[item]}")
             data_from_file_struct[item] = populating_the_dictionary_with_get_queries(main_link, item, data_from_file_struct[item])
         else:
+            logs.debug(f"-----------------------------------")
+            logs.debug(f"вызываю file type check item: {item} | data_from_file_struct: {data_from_file_struct}")
             file_type_check(item, data_from_file_struct)
-            # if "swu.bin" in item:
-            #     logs.debug(f"populating_the_dictionary_with_get_queries | File for swupdate: {item} found")
-            #     if 'file_swupdate' not in data_from_file_struct:
-            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_swupdate not in data_from_file_struct, creating and adding {item}")
-            #         data_from_file_struct["file_swupdate"] = [item]
-            #     else:
-            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_swupdate in data_from_file_struct, adding {item}")
-            #         data_from_file_struct["file_swupdate"].append(item)
 
-            # elif ".bin" in item or ".ubi" in item:
-            #     logs.debug(f"populating_the_dictionary_with_get_queries | File samba: {item} found")
-            #     if 'file_samba' not in data_from_file_struct:
-            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_samba not in data_from_file_struct, creating and adding {item}")
-            #         data_from_file_struct["file_samba"] = [item]
-            #     else:
-            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_samba in data_from_file_struct, adding {item}")
-            #         data_from_file_struct["file_samba"].append(item)
-            # else:
-            #     logs.debug(f"populating_the_dictionary_with_get_queries | Other file: {item} found")
-            #     if 'file_other' not in data_from_file_struct:
-            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_other not in data_from_file_struct, creating and adding {item}")
-            #         data_from_file_struct["file_other"] = [item]
-            #     else:
-            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_other in data_from_file_struct, adding {item}")
-            #         data_from_file_struct["file_other"].append(item)
     logs.debug(f"populating_the_dictionary_with_get_queries | {main_link} pop {main_link[-1]}")
     main_link.pop()
 
     return data_from_file_struct
-                
-    # file_struct : dict = data_from_file_struct[type_link]
 
     # if list_links_on_page is None:
     #     pass
     # elif list_links_on_page[0] == "error":
     #     pass
-    
-    
-    
-
 
 
 def main():
@@ -279,9 +261,11 @@ def main():
     data_from_file_struct = check_file_struct(FILE_STRUCT)
     if len(data_from_file_struct) == 0:
         logs.info("File_struct not found? Creating")
-        list_url = ["http://10.125.0.41/artifactory/aQsi-cube/prerelease/"]
-        data_from_file_struct = populating_the_dictionary_with_get_queries(list_url, "cube-t-b/", data_from_file_struct)
+        list_url = ["http://10.125.0.41/artifactory/aQsi-cube/"]
+        data_from_file_struct = populating_the_dictionary_with_get_queries(list_url, "release/", data_from_file_struct)
+        # data_from_file_struct = populating_the_dictionary_with_get_queries(list_url, "cube-d/", data_from_file_struct)
 
+    write_dict_to_json_file(data_from_file_struct, FILE_STRUCT)
     json_str = json.dumps(data_from_file_struct, indent=8)
     print(json_str)
 
