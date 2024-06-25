@@ -259,11 +259,11 @@ def main():
     # cube_d_links_to_versions = getting_links(URL_D, "cube-d")
 
     data_from_file_struct = check_file_struct(FILE_STRUCT)
-    if len(data_from_file_struct) == 0:
+    if 1 == 1: # len(data_from_file_struct) == 0:
         logs.info("File_struct not found? Creating")
-        list_url = ["http://10.125.0.41/artifactory/aQsi-cube/"]
-        data_from_file_struct = populating_the_dictionary_with_get_queries(list_url, "release/", data_from_file_struct)
-        # data_from_file_struct = populating_the_dictionary_with_get_queries(list_url, "cube-d/", data_from_file_struct)
+        list_url = ["http://10.125.0.41/artifactory/aQsi-cube/release/"]
+        data_from_file_struct["cube-t-b/"] = populating_the_dictionary_with_get_queries(list_url, "cube-t-b/", data_from_file_struct)
+        data_from_file_struct["cube-d/"] = populating_the_dictionary_with_get_queries(list_url, "cube-d/", data_from_file_struct)
 
     write_dict_to_json_file(data_from_file_struct, FILE_STRUCT)
     json_str = json.dumps(data_from_file_struct, indent=8)
