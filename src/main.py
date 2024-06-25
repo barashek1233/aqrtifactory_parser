@@ -6,9 +6,9 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 
 logs = get_logger()
-config_struct_file = {
-    at91bootstrap.bin
-}
+
+with open("config_file_struct.json", "r") as file:
+    config_file_struct = json.load(file)
 
 
 
@@ -150,8 +150,56 @@ def search_new_links(links_list : list):
     return return_list_links_on_page
         
 
-def file_type_check(file_name : str, list_files_current_page : list) -> int:  #  подкгружаем конфиги файлаов
-    config_struct_file = {}
+# {
+#     "samba": {
+#         "1" : [[1, "at91bootstrap.bin"]], 
+#         "2" : [[1, ".ubi"], [0, "100hz"]],
+#         "3" : [[1, "u-boot.bin"]]
+#     },
+#     "samba-100hz" : {
+#         "1" : [[1, "at91bootstrap.bin"]], 
+#         "2" : [[1, ".ubi"], [1, "100hz"]],
+#         "3" : [[1, "u-boot.bin"]]
+#     },
+#     "swupdate" : {
+#         "1" : [[1, "at91bootstrap"], [1, ".swu.bin" ], [0, "100hz"]],
+#         "2" : [[1, "bootloader"], [1, ".swu.bin" ], [0, "100hz"]],
+#         "3" : [[1, "recovery"], [1, ".swu.bin" ], [0, "100hz"]],
+#         "4" : [[1, "rootfs"], [1, ".swu.bin" ], [0, "100hz"]]
+#     },
+#     "swupdate-100hz" : {
+#         "1" : [[1, "at91bootstrap"], [1, ".swu.bin" ], [1, "100hz"]],
+#         "2" : [[1, "bootloader"], [1, ".swu.bin" ], [1, "100hz"]],
+#         "3" : [[1, "recovery"], [1, ".swu.bin" ], [1, "100hz"]],
+#         "4" : [[1, "rootfs"], [1, ".swu.bin" ], [1, "100hz"]]
+#     } 
+# }    ->    config_file_struct : dict
+
+def file_type_check(item : str, data_from_file_struct : list):  #  подкгружаем конфиги файлаов
+    for name_group_file_name, rules_all_files in config_file_struct.items():         # rules_all_files -> "1" : [[1, "at91bootstrap"], [1, ".swu.bin" ], [0, "100hz"]],
+        for number_file, rule_for_file in rules_all_files.items():                   # rule_for_file   -> [[1, "at91bootstrap"], [1, ".swu.bin" ], [0, "100hz"]]
+            flag : int = 1
+            for rule in rule_for_file:
+                if rule[0] == 1:   #   true то есть значение должно быть
+                    if rule[1] in item:
+                        flag = 1
+                    else:
+                        flag = 0
+                elif rule[0] == 0: #   flase то есть значения не должно быть
+                    if rule[1] not in item:
+                        flag = 1
+                    else:
+                        flag = 0
+            if flag == 1:
+                if name_group_file_name not in data_from_file_struct:
+                    logs.debug(f"file_type_check | {name_group_file_name} not in {data_from_file_struct}")
+                    data_from_file_struct[name_group_file_name] = {number_file: item}
+                else:
+                    logs.debug(f"file_type_check | {name_group_file_name} in {data_from_file_struct}")
+                    if number_file in data_from_file_struct[name_group_file_name]:
+                        if data_from_file_struct[name_group_file_name][number_file] < item:
+                            data_from_file_struct[name_group_file_name][number_file] = item
+
 
 
 def populating_the_dictionary_with_get_queries(main_link : list, type_link : str, data_from_file_struct : dict) -> dict:
@@ -172,32 +220,32 @@ def populating_the_dictionary_with_get_queries(main_link : list, type_link : str
             logs.debug(f"populating_the_dictionary_with_get_queries | create item: {item} {data_from_file_struct[item]}")
             data_from_file_struct[item] = populating_the_dictionary_with_get_queries(main_link, item, data_from_file_struct[item])
         else:
-            
-            if "swu.bin" in item:
-                logs.debug(f"populating_the_dictionary_with_get_queries | File for swupdate: {item} found")
-                if 'file_swupdate' not in data_from_file_struct:
-                    logs.debug(f"populating_the_dictionary_with_get_queries | file_swupdate not in data_from_file_struct, creating and adding {item}")
-                    data_from_file_struct["file_swupdate"] = [item]
-                else:
-                    logs.debug(f"populating_the_dictionary_with_get_queries | file_swupdate in data_from_file_struct, adding {item}")
-                    data_from_file_struct["file_swupdate"].append(item)
+            file_type_check(item, data_from_file_struct)
+            # if "swu.bin" in item:
+            #     logs.debug(f"populating_the_dictionary_with_get_queries | File for swupdate: {item} found")
+            #     if 'file_swupdate' not in data_from_file_struct:
+            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_swupdate not in data_from_file_struct, creating and adding {item}")
+            #         data_from_file_struct["file_swupdate"] = [item]
+            #     else:
+            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_swupdate in data_from_file_struct, adding {item}")
+            #         data_from_file_struct["file_swupdate"].append(item)
 
-            elif ".bin" in item or ".ubi" in item:
-                logs.debug(f"populating_the_dictionary_with_get_queries | File samba: {item} found")
-                if 'file_samba' not in data_from_file_struct:
-                    logs.debug(f"populating_the_dictionary_with_get_queries | file_samba not in data_from_file_struct, creating and adding {item}")
-                    data_from_file_struct["file_samba"] = [item]
-                else:
-                    logs.debug(f"populating_the_dictionary_with_get_queries | file_samba in data_from_file_struct, adding {item}")
-                    data_from_file_struct["file_samba"].append(item)
-            else:
-                logs.debug(f"populating_the_dictionary_with_get_queries | Other file: {item} found")
-                if 'file_other' not in data_from_file_struct:
-                    logs.debug(f"populating_the_dictionary_with_get_queries | file_other not in data_from_file_struct, creating and adding {item}")
-                    data_from_file_struct["file_other"] = [item]
-                else:
-                    logs.debug(f"populating_the_dictionary_with_get_queries | file_other in data_from_file_struct, adding {item}")
-                    data_from_file_struct["file_other"].append(item)
+            # elif ".bin" in item or ".ubi" in item:
+            #     logs.debug(f"populating_the_dictionary_with_get_queries | File samba: {item} found")
+            #     if 'file_samba' not in data_from_file_struct:
+            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_samba not in data_from_file_struct, creating and adding {item}")
+            #         data_from_file_struct["file_samba"] = [item]
+            #     else:
+            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_samba in data_from_file_struct, adding {item}")
+            #         data_from_file_struct["file_samba"].append(item)
+            # else:
+            #     logs.debug(f"populating_the_dictionary_with_get_queries | Other file: {item} found")
+            #     if 'file_other' not in data_from_file_struct:
+            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_other not in data_from_file_struct, creating and adding {item}")
+            #         data_from_file_struct["file_other"] = [item]
+            #     else:
+            #         logs.debug(f"populating_the_dictionary_with_get_queries | file_other in data_from_file_struct, adding {item}")
+            #         data_from_file_struct["file_other"].append(item)
     logs.debug(f"populating_the_dictionary_with_get_queries | {main_link} pop {main_link[-1]}")
     main_link.pop()
 
