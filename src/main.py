@@ -31,7 +31,14 @@ def get_respons_from_url(url):
     return respons
 
 
-def get_all_links_from_respons(response):
+def get_all_links_from_respons(response) -> list | None:
+    """
+    Функция ищет в теле ответа все ссылки
+    При возникновении ошибки вернет None 
+    
+    Принимает: respons (Respons)
+    Возвращает: list | None
+    """
     try:
         soup = BeautifulSoup(response.text, 'html.parser')
         links = [link.get('href') for link in soup.find_all('a', href=True)]
@@ -48,55 +55,74 @@ def get_all_links_from_respons(response):
     return links
 
 
-def getting_links(URL : str, cube_name : str):
-    logs.info(f"{cube_name} | Relise link : {URL}")
+def getting_links(URL : str) -> list | None:
+    """
+    Функция принимает URL с которого нужно получить ссылки все ссылки.
+    Вызывает функцию которая делает get запрос.
+    Возвращает None если ошибка запроса или ошибка с поиском ссылок на странице.
+    Если ошибок нет вернет список всех ссылок со страницы
+
+    Принимает: URL (str)
+
+    Возвращает: None | List
+    """
+    logs.info(f"getting_links | Relise link : {URL}")
     response = get_respons_from_url(URL)
 
     if response is not None:
-        logs.info(f"getting_links | {cube_name} | Good Response, return links")
+        logs.info(f"getting_links | {URL} | Good Response, return links")
         links = get_all_links_from_respons(response)
     else:
-        logs.error(f"getting_links | {cube_name} | Respons is None Error")
+        logs.error(f"getting_links | {URL} | Respons is None Error")
         links = None
 
     return links
 
 
-def check_file_struct(file_struct : str):
+def check_file_struct(file_name : str):
+    """
+    Функция проверки наличия файла передаваемого в парматре file_name
+    Если файла нет или файл не JSON, вернет пустой словарь
+    Если файл есть, вернет словарь со значениями из файла
+
+    Принимает: file_name (str): путь до файла
+    
+    Возвращает: dict
+    """
+    data = {}
+    if ".json" not in file_name:
+        logs.warning(f"file name: {file_name} < need .json")
+        return data
     try:
-        with open(file_struct, "r") as file:
+        with open(file_name, "r") as file:
             data = json.load(file)
     except FileNotFoundError:
-        logs.warning(f"check_file_struct | File_struct: {file_struct} not found ALARM!!!!")  # вот тут надо буедет сделать логирование в телеграм потому что если этого файла нет программа запущена в первый раз или файл удалилс
-        data = {}
+        logs.warning(f"check_file_struct | file_name: {file_name} not found ALARM!!!!")  # вот тут надо буедет сделать логирование в телеграм потому что если этого файла нет программа запущена в первый раз или файл удалилс
     else:
-        logs.info(f" check_file_struct | File_struct: {file_struct} open")
+        logs.info(f" check_file_struct | file_name: {file_name} open")
     return data
 
-@logs.catch
+
 def search_new_links(links_list : list):
     """
     Фнукция делает get запрос по адресу указанному в параметре linls_list спику и возвращает список всех ссылкок по указанному адресу, 
-    если в списке ошибка данных вернет спиок c одним занчением "Error links_list, если не удалось выполнить get запрос вернет None
+    если в списке ошибка данных, вернет None, если не удалось выполнить get запрос вернет None
     
     Параметры:
     links_list (list): пример: ["http://10.125.0.41/artifactory/aQsi-cube/release/cube-d/", "1.0.6-rc42/", "cube_image/"]
     
     Возвращает:
-    list: если ошибка типа данных в ссылке : ["error", link, type(link), itter] -> "error": текст что ошибка, link: значение из за которой произошла ошибка, type(link): тип данных значения, itter: номер элемента в списке, начиная с 0.
     list: если нет ошибок вернет список ссылок со страницы.
-    None: если не удалось выполнить get запрос
+    None: если не удалось выполнить get запрос или проблема в ссылке
     """
     links_str : str = ""
-    itter = 0
     logs.debug(f"search_new_links | links_list: {links_list}")
     for link in links_list:
         if type(link) != str:
-            logs.debug(f"search_new_links | Error link, {link} is not type str/ WTF??")
-            return ["error", link, type(link), itter]
+            logs.warning(f"search_new_links | Error link, {link} | type: {type(link)} | is not type str/ WTF??")
+            return None
         else:
             links_str = links_str + link
-        itter = itter + 1
     
     return_list_links_on_page : list | None = getting_links(links_str, links_str)
 
@@ -119,10 +145,11 @@ def populating_the_dictionary_with_get_queries(main_link : list, type_link : str
     
     main_link.append(type_link)
     logs.debug(f"populating_the_dictionary_with_get_queries | main_link: {main_link}")
+
     list_links_on_page : list | None = search_new_links(main_link)
     logs.debug(f"populating_the_dictionary_with_get_queries | list_links_on_page: {list_links_on_page}")
-    if list_links_on_page is None:
-        return list_links_on_page
+    if list_links_on_page is None or list_links_on_page[0] == "error":
+        return None
     for item in list_links_on_page:
         # if item is not data_from_file_struct:
         logs.debug(f"populating_the_dictionary_with_get_queries | item is not data_from_file_struct: {item}")
