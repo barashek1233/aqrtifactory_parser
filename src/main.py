@@ -6,9 +6,21 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 
 logs = get_logger()
+config_struct_file = {
+    at91bootstrap.bin
+}
 
 
-def get_respons_from_url(url):
+
+def get_respons_from_url(url : str):
+    """
+    Ункция выполняет get запрос по адресу указанному в передаваемом значении
+    При возникновении ошибки вернет None
+
+    Принимает: url(str)
+
+    Возвращает: requests.Response | None 
+    """
     try:
         respons = requests.get(url, timeout=10)
     except requests.exceptions.RequestException as e:
@@ -31,7 +43,7 @@ def get_respons_from_url(url):
     return respons
 
 
-def get_all_links_from_respons(response) -> list | None:
+def get_all_links_from_respons(response):
     """
     Функция ищет в теле ответа все ссылки
     При возникновении ошибки вернет None 
@@ -55,7 +67,7 @@ def get_all_links_from_respons(response) -> list | None:
     return links
 
 
-def getting_links(URL : str) -> list | None:
+def getting_links(URL : str):
     """
     Функция принимает URL с которого нужно получить ссылки все ссылки.
     Вызывает функцию которая делает get запрос.
@@ -79,7 +91,7 @@ def getting_links(URL : str) -> list | None:
     return links
 
 
-def check_file_struct(file_name : str):
+def check_file_struct(file_name : str) -> dict:
     """
     Функция проверки наличия файла передаваемого в парматре file_name
     Если файла нет или файл не JSON, вернет пустой словарь
@@ -124,7 +136,7 @@ def search_new_links(links_list : list):
         else:
             links_str = links_str + link
     
-    return_list_links_on_page : list | None = getting_links(links_str, links_str)
+    return_list_links_on_page = getting_links(links_str)
 
     if return_list_links_on_page is None:
         logs.warning(f"search_new_links | return_list_links_on_page is None {return_list_links_on_page}")
@@ -138,17 +150,18 @@ def search_new_links(links_list : list):
     return return_list_links_on_page
         
 
+def file_type_check(file_name : str, list_files_current_page : list) -> int:  #  подкгружаем конфиги файлаов
+    config_struct_file = {}
+
+
 def populating_the_dictionary_with_get_queries(main_link : list, type_link : str, data_from_file_struct : dict) -> dict:
-    test_dict = {}
-    test_dict["sam-ba"] = ["1", "2", "3"]
-    test_dict["sam-ba-100hz"] = ["1", "2", "3"]
     
     main_link.append(type_link)
     logs.debug(f"populating_the_dictionary_with_get_queries | main_link: {main_link}")
 
     list_links_on_page : list | None = search_new_links(main_link)
     logs.debug(f"populating_the_dictionary_with_get_queries | list_links_on_page: {list_links_on_page}")
-    if list_links_on_page is None or list_links_on_page[0] == "error":
+    if list_links_on_page is None:
         return None
     for item in list_links_on_page:
         # if item is not data_from_file_struct:
@@ -158,12 +171,35 @@ def populating_the_dictionary_with_get_queries(main_link : list, type_link : str
             data_from_file_struct[item] = {}
             logs.debug(f"populating_the_dictionary_with_get_queries | create item: {item} {data_from_file_struct[item]}")
             data_from_file_struct[item] = populating_the_dictionary_with_get_queries(main_link, item, data_from_file_struct[item])
-        elif ".bin" in item:  #  надо что то придумать с проверкой? потому что основная проблема тут. надо научиться разделять ссылки на файлы и сами файлы. а все остальное нахер
-            # написать фнукцию раскидывающую по версия самбы и сву пакеты пока типо она тут есть, и возвращает готовый словарь такого толка data_from_file_struct[type_link] 
-            logs.debug(f"populating_the_dictionary_with_get_queries | return test_dict because item: {item} and type_link: {type_link}")
-            return test_dict
-            # data_from_file_struct[item] = populating_the_dictionary_with_get_queries(main_link, item, data_from_file_struct[item])
-        main_link.pop()
+        else:
+            
+            if "swu.bin" in item:
+                logs.debug(f"populating_the_dictionary_with_get_queries | File for swupdate: {item} found")
+                if 'file_swupdate' not in data_from_file_struct:
+                    logs.debug(f"populating_the_dictionary_with_get_queries | file_swupdate not in data_from_file_struct, creating and adding {item}")
+                    data_from_file_struct["file_swupdate"] = [item]
+                else:
+                    logs.debug(f"populating_the_dictionary_with_get_queries | file_swupdate in data_from_file_struct, adding {item}")
+                    data_from_file_struct["file_swupdate"].append(item)
+
+            elif ".bin" in item or ".ubi" in item:
+                logs.debug(f"populating_the_dictionary_with_get_queries | File samba: {item} found")
+                if 'file_samba' not in data_from_file_struct:
+                    logs.debug(f"populating_the_dictionary_with_get_queries | file_samba not in data_from_file_struct, creating and adding {item}")
+                    data_from_file_struct["file_samba"] = [item]
+                else:
+                    logs.debug(f"populating_the_dictionary_with_get_queries | file_samba in data_from_file_struct, adding {item}")
+                    data_from_file_struct["file_samba"].append(item)
+            else:
+                logs.debug(f"populating_the_dictionary_with_get_queries | Other file: {item} found")
+                if 'file_other' not in data_from_file_struct:
+                    logs.debug(f"populating_the_dictionary_with_get_queries | file_other not in data_from_file_struct, creating and adding {item}")
+                    data_from_file_struct["file_other"] = [item]
+                else:
+                    logs.debug(f"populating_the_dictionary_with_get_queries | file_other in data_from_file_struct, adding {item}")
+                    data_from_file_struct["file_other"].append(item)
+    logs.debug(f"populating_the_dictionary_with_get_queries | {main_link} pop {main_link[-1]}")
+    main_link.pop()
 
     return data_from_file_struct
                 

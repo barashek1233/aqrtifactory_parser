@@ -14,7 +14,8 @@
                     "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240325103705.100hz-scheduler-1.0.6-rc42-.ubi",
                     "u-boot.bin"
                 ]
-            },
+            }, 
+            
             "cube-transport-image/": {
                 "sam-ba": [
                     "at91bootstrap.bin",
