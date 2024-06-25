@@ -177,6 +177,8 @@ def search_new_links(links_list : list):
 
 def file_type_check(item : str, data_from_file_struct : list):  #  подкгружаем конфиги файлаов
     for name_group_file_name, rules_all_files in config_file_struct.items():         # rules_all_files -> "1" : [[1, "at91bootstrap"], [1, ".swu.bin" ], [0, "100hz"]],
+        logs.debug(f"-----------file_type_check-----------")
+        logs.debug(f"{name_group_file_name} and {rules_all_files}")
         for number_file, rule_for_file in rules_all_files.items():                   # rule_for_file   -> [[1, "at91bootstrap"], [1, ".swu.bin" ], [0, "100hz"]]
             flag : int = 1
             for rule in rule_for_file:
@@ -199,6 +201,8 @@ def file_type_check(item : str, data_from_file_struct : list):  #  подкгр�
                     if number_file in data_from_file_struct[name_group_file_name]:
                         if data_from_file_struct[name_group_file_name][number_file] < item:
                             data_from_file_struct[name_group_file_name][number_file] = item
+                    else:
+                        data_from_file_struct[name_group_file_name][number_file] = item
 
 
 
