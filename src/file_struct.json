@@ -1,0 +1,565 @@
+{
+    "cube-t-b/": {
+        "1.0.3-rc9-723%2Bdev_gbbf1d56c-g4b815d4/": {
+            "cube-dev-image/": {
+                "info/": {
+                    "cube-dev-image/": {},
+                    "swupdate-image/": {}
+                },
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-t-b.ubifs.cube-dev-image-cube-t-b-1.0.3-rc9-723%2Bgbbf1d56c-g4b815d4.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-dev-image.cube-t-b_3.9.0-r0.4.2-723%2Bgbbf1d56c-g4b815d4-g09ae4e0.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-t-b_2019.4.0-at91-r0.6.0.0-723%2Bgbbf1d56c-g4b815d4-g483221e.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-t-b_1.0.3-rc9-1.0-r0.7-723%2Bgbbf1d56c-g4b815d4.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-t-b_1.0.3-rc9-2.0-r5.3.7-723%2Bgbbf1d56c-g4b815d4.swu.bin"
+                }
+            },
+            "rpm/": {}
+        },
+        "1.0.6-rc42/": {
+            "cube-dev-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-t-b.ubifs.cube-dev-image-cube-t-b-20240326120716-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-t-b.ubifs.cube-dev-image-cube-t-b-20240326125128.100hz-scheduler-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-dev-image.cube-t-b.100hz-scheduler_4.0.1-r0.6.0.6%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-t-b.100hz-scheduler_2021.4.0-at91-r8.0.0.6%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-t-b.100hz-scheduler_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-t-b.100hz-scheduler_1.0.6-rc42%2B2.0-r14.1.0.1.0.4.8.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-dev-image.cube-t-b_4.0.1-r0.6.0.6%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-t-b_2021.4.0-at91-r8.0.0.6%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-t-b_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-t-b_1.0.6-rc42%2B2.0-r14.1.0.1.0.4.8.swu.bin"
+                }
+            },
+            "cube-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240325173504-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240326122146.100hz-scheduler-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-image.cube-t-b.100hz-scheduler_4.0.1-r0.6.0.6%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-image.cube-t-b.100hz-scheduler_2021.4.0-at91-r8.0.0.6%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-image.cube-t-b.100hz-scheduler_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-t-b.100hz-scheduler_1.0.6-rc42%2B2.0-r14.1.0.1.0.2.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-image.cube-t-b_4.0.1-r0.6.0.6%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-image.cube-t-b_2021.4.0-at91-r8.0.0.6%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-image.cube-t-b_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-t-b_1.0.6-rc42%2B2.0-r14.1.0.1.0.2.swu.bin"
+                }
+            },
+            "cube-transport-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-t-b.ubifs.cube-transport-image-cube-t-b-20240325175333-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-t-b.ubifs.cube-transport-image-cube-t-b-20240326123557.100hz-scheduler-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-transport-image.cube-t-b.100hz-scheduler_4.0.1-r0.6.0.6%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-transport-image.cube-t-b.100hz-scheduler_2021.4.0-at91-r8.0.0.6%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-t-b.100hz-scheduler_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-t-b.100hz-scheduler_1.0.6-rc42%2B1.0-r14.1.0.1.0.4.2.2.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-transport-image.cube-t-b_4.0.1-r0.6.0.6%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-transport-image.cube-t-b_2021.4.0-at91-r8.0.0.6%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-t-b_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-t-b_1.0.6-rc42%2B1.0-r14.1.0.1.0.4.2.2.swu.bin"
+                }
+            }
+        },
+        "1.0.6-rc43/": {
+            "cube-dev-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-t-b.ubifs.cube-dev-image-cube-t-b-20240524174918-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-t-b.ubifs.cube-dev-image-cube-t-b-20240524183953.100hz-scheduler-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-dev-image.cube-t-b.100hz-scheduler_4.0.1-r0.6.0.10%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-t-b.100hz-scheduler_2021.4.0-at91-r8.0.0.10%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-t-b.100hz-scheduler_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-t-b.100hz-scheduler_1.0.6-rc43%2B2.0-r14.1.0.1.0.4.8.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-dev-image.cube-t-b_4.0.1-r0.6.0.10%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-t-b_2021.4.0-at91-r8.0.0.10%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-t-b_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-t-b_1.0.6-rc43%2B2.0-r14.1.0.1.0.4.8.swu.bin"
+                }
+            },
+            "cube-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240524171620-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240524180603.100hz-scheduler-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-image.cube-t-b.100hz-scheduler_4.0.1-r0.6.0.10%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-image.cube-t-b.100hz-scheduler_2021.4.0-at91-r8.0.0.10%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-image.cube-t-b.100hz-scheduler_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-t-b.100hz-scheduler_1.0.6-rc43%2B2.0-r14.1.0.1.0.2.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-image.cube-t-b_4.0.1-r0.6.0.6%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-image.cube-t-b_2021.4.0-at91-r8.0.0.10%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-image.cube-t-b_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-t-b_1.0.6-rc43%2B2.0-r14.1.0.1.0.2.swu.bin"
+                }
+            },
+            "cube-transport-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-t-b.ubifs.cube-transport-image-cube-t-b-20240524173238-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-t-b.ubifs.cube-transport-image-cube-t-b-20240524182217.100hz-scheduler-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-transport-image.cube-t-b.100hz-scheduler_4.0.1-r0.6.0.10%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-transport-image.cube-t-b.100hz-scheduler_2021.4.0-at91-r8.0.0.10%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-t-b.100hz-scheduler_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-t-b.100hz-scheduler_1.0.6-rc43%2B1.0-r14.1.0.1.0.4.2.2.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-transport-image.cube-t-b_4.0.1-r0.6.0.10%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-transport-image.cube-t-b_2021.4.0-at91-r8.0.0.10%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-t-b_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-t-b_1.0.6-rc43%2B1.0-r14.1.0.1.0.4.2.2.swu.bin"
+                }
+            }
+        }
+    },
+    "cube-d/": {
+        "0.11.0/": {
+            "samba": {
+                "1": "at91bootstrap.bin",
+                "2": "cube-image--env-recovery-kernel-rootfs-data.ubi",
+                "3": "u-boot.bin"
+            },
+            "samba-100hz": {
+                "1": "at91bootstrap.bin",
+                "3": "u-boot.bin"
+            },
+            "swupdate": {
+                "1": "at91bootstrap.cube-image.cube-d_3.9.0-r2.1.swu.bin",
+                "2": "bootloader.cube-image.cube-d_2019.4.0-at91-r2.0.swu.bin",
+                "3": "recovery.cube-image.cube-d_0.11.0-2.0-r3.swu.bin",
+                "4": "rootfs.cube-image.cube-d_0.11.0-2.0-r3.swu.bin"
+            }
+        },
+        "0.11.6-332%2Bwarrior_gc3a8e73c12-warrior_g56c41d21/": {
+            "cube-dev-image/": {
+                "info/": {
+                    "cube-dev-image/": {},
+                    "swupdate-image/": {}
+                },
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image--env-recovery-kernel-rootfs-data.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-dev-image.cube-d_3.9.0-r3.0-332%2Bgc3a8e73c12-g56c41d21.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-d_2019.4.0-at91-r2.0-332%2Bgc3a8e73c12-g56c41d21.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d_0.11.6-2.0-r5-332%2Bgc3a8e73c12-g56c41d21.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d_0.11.6-2.0-r3-332%2Bgc3a8e73c12-g56c41d21.swu.bin"
+                }
+            },
+            "cube-image/": {
+                "info/": {
+                    "cube-image/": {},
+                    "swupdate-image/": {}
+                },
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image--env-recovery-kernel-rootfs-data.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-image.cube-d_3.9.0-r3.0-332%2Bgc3a8e73c12-g56c41d21.swu.bin",
+                    "2": "bootloader.cube-image.cube-d_2019.4.0-at91-r2.0-332%2Bgc3a8e73c12-g56c41d21.swu.bin",
+                    "3": "recovery.cube-image.cube-d_0.11.6-2.0-r5-332%2Bgc3a8e73c12-g56c41d21.swu.bin",
+                    "4": "rootfs.cube-image.cube-d_0.11.6-1.0-r1-332%2Bgc3a8e73c12-g56c41d21.swu.bin"
+                }
+            },
+            "rpm/": {}
+        },
+        "0.12.0/": {
+            "emv/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-emv-image-cube-d.ubifs.cube-emv-image-cube-d-0.12.0-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                }
+            }
+        },
+        "1.0.3-rc9-723%2Bdev_gbbf1d56c-g4b815d4/": {
+            "cube-dev-image/": {
+                "info/": {
+                    "cube-dev-image/": {},
+                    "swupdate-image/": {}
+                },
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-d.ubifs.cube-dev-image-cube-d-1.0.3-rc9-723%2Bgbbf1d56c-g4b815d4.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-dev-image.cube-d_3.9.0-r0.4.10-723%2Bgbbf1d56c-g4b815d4-g09ae4e0.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-d_2019.4.0-at91-r0.6.0.0-723%2Bgbbf1d56c-g4b815d4-g483221e.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d_1.0.3-rc9-1.0-r0.7-723%2Bgbbf1d56c-g4b815d4.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d_1.0.3-rc9-2.0-r5.3.7-723%2Bgbbf1d56c-g4b815d4.swu.bin"
+                }
+            },
+            "cube-image/": {
+                "info/": {
+                    "cube-image/": {},
+                    "swupdate-image/": {}
+                },
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-d.ubifs.cube-image-cube-d-1.0.3-rc9-723%2Bgbbf1d56c-g4b815d4.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-image.cube-d_3.9.0-r0.4.10-723%2Bgbbf1d56c-g4b815d4-g09ae4e0.swu.bin",
+                    "2": "bootloader.cube-image.cube-d_2019.4.0-at91-r0.6.0.0-723%2Bgbbf1d56c-g4b815d4-g483221e.swu.bin",
+                    "3": "recovery.cube-image.cube-d_1.0.3-rc9-1.0-r0.7-723%2Bgbbf1d56c-g4b815d4.swu.bin",
+                    "4": "rootfs.cube-image.cube-d_1.0.3-rc9-1.0-r5.3.7.1-723%2Bgbbf1d56c-g4b815d4.swu.bin"
+                }
+            },
+            "rpm/": {}
+        },
+        "1.0.5/": {
+            "cube-dev-image/": {
+                "swupdate": {
+                    "2": "bootloader.cube-dev-image.cube-d_2021.4.0-at91-r3.0.0.78%2Bge54720e-devel.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d_1.0.5-1.0-r0.10.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d_1.0.5-2.0-r9.1.0.0.0.6.8.swu.bin"
+                },
+                "samba": {
+                    "2": "cube-dev-image-cube-d.ubifs.cube-dev-image-cube-d-20220504072158-1.0.5-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "3": "u-boot.bin"
+                }
+            },
+            "cube-image/": {
+                "swupdate": {
+                    "2": "bootloader.cube-image.cube-d_2021.4.0-at91-r3.0.0.78%2Bge54720e.swu.bin",
+                    "3": "recovery.cube-image.cube-d_1.0.5%2B1.0-r0.10.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-d_1.0.5%2B2.0-r9.1.0.0.0.2.swu.bin"
+                },
+                "samba": {
+                    "2": "cube-image-cube-d.ubifs.cube-image-cube-d-20220429145240-1.0.5-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "3": "u-boot.bin"
+                }
+            }
+        },
+        "1.0.5-rc07/": {
+            "cube-dev-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-d.ubifs.cube-dev-image-cube-d-20220113165116-1.0.5-rc07-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-dev-image.cube-d_4.0.1-r0.0.0.1%2Bgb26cc30.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-d_2021.4.0-at91-r3.0.0.2%2Bg0f2920a.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d_1.0.5-rc07-1.0-r0.10.0.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d_1.0.5-rc07-2.0-r8.0.0.0.0.4.7.swu.bin"
+                }
+            },
+            "cube-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-d.ubifs.cube-image-cube-d-20220114144350-1.0.5-rc07-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-image.cube-d_4.0.1-r0.0.0.0%2Bgb26cc30.swu.bin",
+                    "2": "bootloader.cube-image.cube-d_2021.4.0-at91-r3.0.0.2%2Bg0f2920a.swu.bin",
+                    "3": "recovery.cube-image.cube-d_1.0.5-rc07-1.0-r0.10.0.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-d_1.0.5-rc07-1.0-r8.0.0.0.0.4.7.2.swu.bin"
+                }
+            }
+        },
+        "1.0.6-rc36/": {
+            "cube-dev-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-d.ubifs.cube-dev-image-cube-d-20230912094509-1.0.6-rc36-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "pseudo-image-migration-cube-dev-image-at91bootstrap.cube-transport-image.cube-d_4.0.1-r0.3.0.0%2Bgca9b427.swu.bin",
+                    "2": "pseudo-image-migration-cube-dev-image-bootloader.cube-transport-image.cube-d_2021.4.0-at91-r6.0.0.0%2Bg46ec4d0.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d_1.0.6-rc36%2B1.0-r0.12.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d_1.0.6-rc36%2B2.0-r12.1.0.1.0.4.8.swu.bin"
+                }
+            },
+            "cube-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-d.ubifs.cube-image-cube-d-20230912091802-1.0.6-rc36-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "pseudo-image-migration-cube-image-at91bootstrap.cube-transport-image.cube-d_4.0.1-r0.3.0.0%2Bgca9b427.swu.bin",
+                    "2": "pseudo-image-migration-cube-image-bootloader.cube-transport-image.cube-d_2021.4.0-at91-r6.0.0.0%2Bg46ec4d0.swu.bin",
+                    "3": "recovery.cube-image.cube-d_1.0.6-rc36%2B1.0-r0.12.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-d_1.0.6-rc36%2B2.0-r12.1.0.1.0.2.swu.bin"
+                }
+            },
+            "cube-transport-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-d.ubifs.cube-transport-image-cube-d-20230912093139-1.0.6-rc36-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "3": "u-boot.bin"
+                },
+                "swupdate": {
+                    "1": "pseudo-image-migration-cube-transport-image-at91bootstrap.cube-image.cube-d_4.0.1-r0.3.0.0%2Bgca9b427.swu.bin",
+                    "2": "pseudo-image-migration-cube-transport-image-bootloader.cube-image.cube-d_2021.4.0-at91-r6.0.0.0%2Bg46ec4d0.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-d_1.0.6-rc36%2B1.0-r0.12.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-d_1.0.6-rc36%2B1.0-r12.1.0.1.0.4.2.2.swu.bin"
+                }
+            }
+        },
+        "1.0.6-rc42/": {
+            "cube-dev-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-d.ubifs.cube-dev-image-cube-d-20240326115904-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-d.ubifs.cube-dev-image-cube-d-20240326124341.100hz-scheduler-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-dev-image.cube-d.100hz-scheduler_4.0.1-r0.6.0.11%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-d.100hz-scheduler_2021.4.0-at91-r8.0.0.11%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d.100hz-scheduler_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d.100hz-scheduler_1.0.6-rc42%2B2.0-r14.1.0.1.0.4.8.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-dev-image.cube-d_4.0.1-r0.6.0.11%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-d_2021.4.0-at91-r8.0.0.11%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d_1.0.6-rc42%2B2.0-r14.1.0.1.0.4.8.swu.bin"
+                }
+            },
+            "cube-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-d.ubifs.cube-image-cube-d-20240325172810-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-d.ubifs.cube-image-cube-d-20240326121449.100hz-scheduler-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-image.cube-d.100hz-scheduler_4.0.1-r0.6.0.11%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-image.cube-d.100hz-scheduler_2021.4.0-at91-r8.0.0.11%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-image.cube-d.100hz-scheduler_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-d.100hz-scheduler_1.0.6-rc42%2B2.0-r14.1.0.1.0.2.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-image.cube-d_4.0.1-r0.6.0.11%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-image.cube-d_2021.4.0-at91-r8.0.0.11%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-image.cube-d_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-d_1.0.6-rc42%2B2.0-r14.1.0.1.0.2.swu.bin"
+                }
+            },
+            "cube-transport-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-d.ubifs.cube-transport-image-cube-d-20240325174438-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-d.ubifs.cube-transport-image-cube-d-20240326122821.100hz-scheduler-1.0.6-rc42-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-transport-image.cube-d.100hz-scheduler_4.0.1-r0.6.0.11%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-transport-image.cube-d.100hz-scheduler_2021.4.0-at91-r8.0.0.11%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-d.100hz-scheduler_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-d.100hz-scheduler_1.0.6-rc42%2B1.0-r14.1.0.1.0.4.2.2.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-transport-image.cube-d_4.0.1-r0.6.0.11%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-transport-image.cube-d_2021.4.0-at91-r8.0.0.11%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-d_1.0.6-rc42%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-d_1.0.6-rc42%2B1.0-r14.1.0.1.0.4.2.2.swu.bin"
+                }
+            }
+        },
+        "1.0.6-rc43/": {
+            "cube-dev-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-d.ubifs.cube-dev-image-cube-d-20240524174048-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-dev-image-cube-d.ubifs.cube-dev-image-cube-d-20240524183110.100hz-scheduler-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-dev-image.cube-d.100hz-scheduler_4.0.1-r0.6.0.16%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-d.100hz-scheduler_2021.4.0-at91-r8.0.0.15%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d.100hz-scheduler_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d.100hz-scheduler_1.0.6-rc43%2B2.0-r14.1.0.1.0.4.8.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-dev-image.cube-d_4.0.1-r0.6.0.16%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-dev-image.cube-d_2021.4.0-at91-r8.0.0.15%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-dev-image.cube-d_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-dev-image.cube-d_1.0.6-rc43%2B2.0-r14.1.0.1.0.4.8.swu.bin"
+                }
+            },
+            "cube-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-d.ubifs.cube-image-cube-d-20240524170908-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-image-cube-d.ubifs.cube-image-cube-d-20240524175822.100hz-scheduler-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-image.cube-d.100hz-scheduler_4.0.1-r0.6.0.16%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-image.cube-d.100hz-scheduler_2021.4.0-at91-r8.0.0.15%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-image.cube-d.100hz-scheduler_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-d.100hz-scheduler_1.0.6-rc43%2B2.0-r14.1.0.1.0.2.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-image.cube-d_4.0.1-r0.6.0.11%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-image.cube-d_2021.4.0-at91-r8.0.0.15%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-image.cube-d_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-image.cube-d_1.0.6-rc43%2B2.0-r14.1.0.1.0.2.swu.bin"
+                }
+            },
+            "cube-transport-image/": {
+                "samba": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-d.ubifs.cube-transport-image-cube-d-20240524172349-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "samba-100hz": {
+                    "1": "at91bootstrap.bin",
+                    "2": "cube-transport-image-cube-d.ubifs.cube-transport-image-cube-d-20240524181339.100hz-scheduler-1.0.6-rc43-.ubi",
+                    "3": "u-boot.bin"
+                },
+                "swupdate-100hz": {
+                    "1": "at91bootstrap.cube-transport-image.cube-d.100hz-scheduler_4.0.1-r0.6.0.16%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-transport-image.cube-d.100hz-scheduler_2021.4.0-at91-r8.0.0.15%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-d.100hz-scheduler_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-d.100hz-scheduler_1.0.6-rc43%2B1.0-r14.1.0.1.0.4.2.2.swu.bin"
+                },
+                "swupdate": {
+                    "1": "at91bootstrap.cube-transport-image.cube-d_4.0.1-r0.6.0.16%2Bgca9b427.swu.bin",
+                    "2": "bootloader.cube-transport-image.cube-d_2021.4.0-at91-r8.0.0.15%2Bg637279b.swu.bin",
+                    "3": "recovery.cube-transport-image.cube-d_1.0.6-rc43%2B1.0-r0.15.1.0.swu.bin",
+                    "4": "rootfs.cube-transport-image.cube-d_1.0.6-rc43%2B1.0-r14.1.0.1.0.4.2.2.swu.bin"
+                }
+            }
+        }
+    }
+}
