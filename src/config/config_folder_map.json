@@ -1,0 +1,27 @@
+
+{
+    "cube-image/": {
+        "cube-t-b/":{
+            "settings": {
+                "version": "latest"
+            }
+        },
+        "cube-d/":{
+            "settings": {
+                "version": "latest"
+            }
+        }
+    }, 
+    "cube-transport-image/": {
+        "cube-d/":{
+            "settings": {
+                "version": "all"
+            }
+        },
+        "cube-t-b/":{
+            "settings": {
+                "version": "all"
+            }
+        }
+    }
+}
