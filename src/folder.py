@@ -21,14 +21,33 @@ class creator_folder():
 #             "settings": {
 #                 "version": "latest"
 #             }
+#         },
+#         "cube-d/":{
+#             "settings": {
+#                 "version": "latest"
+#             }
 #         }
+#     },
 
     def search(self, file_struct : dict, keys : str, settings : dict):
-        pass
+        for key, value in file_struct.items():
+            if key in keys:
+                pass
 
-    def dowload(self, path_folder : str, keys : list, settings : dict):
-        pass
-    
+    def dowload(self):
+        self.path_to_file = []
+        # cube-image
+        for cube_po, cube_types in self.config_folder_map.items():
+            #   cube-t-b    
+            for cube_type, settings in cube_types.items():
+                #   rc40    
+                if cube_type in self.files_struct:      
+                    for version_po, version_images in self.files_struct[cube_type].items():
+                        if cube_po in version_images:
+                            for version_image, files_type in version_images.items():
+                                temp_path : str = cube_type + version_po + version_image
+                                self.path_to_file.append(temp_path)
+
     def create_and_download(self):
         for cube_version_po, cube_types in self.config_folder_map.items():
             path = [cube_version_po]
@@ -41,8 +60,8 @@ class creator_folder():
                 path.pop()
 
 
-
-
 if __name__ == "__main__":
     test = creator_folder()
-    test.create_and_download()
+    test.dowload()
+    for i in test.path_to_file:
+        print(i)
