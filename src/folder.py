@@ -35,18 +35,58 @@ class creator_folder():
                 pass
 
     def dowload(self):
+        """
+        
+        return ['samba', 'cube-image/', 'cube-t-b/', '1.0.6-rc42/', 
+        ['at91bootstrap.bin', 
+        'cube-image-cube-t-b.ubifs.cube-image-cube-t-b-20240325173504-1.0.6-rc42-.ubi',
+          'u-boot.bin']]
+
+        """
         self.path_to_file = []
         # cube-image
-        for cube_po, cube_types in self.config_folder_map.items():
+        for config_cube_sw, config_cube_types in self.config_folder_map.items():
             #   cube-t-b    
-            for cube_type, settings in cube_types.items():
-                #   rc40    
-                if cube_type in self.files_struct:      
-                    for version_po, version_images in self.files_struct[cube_type].items():
-                        if cube_po in version_images:
-                            for version_image, files_type in version_images.items():
-                                temp_path : str = cube_type + version_po + version_image
-                                self.path_to_file.append(temp_path)
+            for config_cube_type, config_settings in config_cube_types.items():    
+                if "version" in config_settings["settings"]: 
+                    config_settings_version = config_settings["settings"]["version"]
+                else: 
+                    config_settings_version = "all"
+
+                if "items" in config_settings["settings"]: 
+                    config_settings_items = config_settings["settings"]["items"]
+                else: 
+                    config_settings_items = ["samba", "samba-100hz"]
+
+                if config_cube_type in self.files_struct:      
+                    # rc40, {cube-image:{...}, cube-transport-image{...}, ...} 
+                    for version_sw_in_file_struct, version_images_in_file_struct in self.files_struct[config_cube_type].items():
+                        
+                        path_to_files = []
+                        #cube-image есть в {cube-image:{...}, cube-transport-image{...}, ...} 
+                        if config_cube_sw in version_images_in_file_struct:
+                            for version_image_in_file_struct, files_types_in_file_struct in version_images_in_file_struct.items():
+                                #   cube-image     cube-image
+                                if version_image_in_file_struct == config_cube_sw:
+                                    for item in config_settings_items:  #  берем типы файлов из folder_map
+
+                                        if item in files_types_in_file_struct:          #  если этот файл есть в структуре файлов
+                                            tmp_path_to_file = [item, version_image_in_file_struct, config_cube_type, version_sw_in_file_struct, []]
+                                            for number_file_in_file_struct, file_in_file_struct in files_types_in_file_struct[item].items():
+                                                tmp_path_to_file[4].append(file_in_file_struct)
+                                            if config_settings_version == "latest" and len(path_to_files) != 0 :
+
+
+                                                if path_to_files[0][3] < tmp_path_to_file[0][3]:
+                                                
+                                                    path_to_files[0] = tmp_path_to_file
+                                            else:
+                                                path_to_files.append(tmp_path_to_file)
+                        self.path_to_file.append(path_to_files)
+                                                
+                                    # temp_path : str = config_cube_type + version_sw_in_file_struct + version_image_in_file_struct
+                                    # self.path_to_file.append(temp_path)
+            
 
     def create_and_download(self):
         for cube_version_po, cube_types in self.config_folder_map.items():
@@ -63,5 +103,7 @@ class creator_folder():
 if __name__ == "__main__":
     test = creator_folder()
     test.dowload()
-    for i in test.path_to_file:
-        print(i)
+    # for i in test.path_to_file:
+    #     print(i)
+    #     print()
+    print(test.path_to_file)

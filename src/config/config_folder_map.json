@@ -3,12 +3,14 @@
     "cube-image/": {
         "cube-t-b/":{
             "settings": {
-                "version": "latest"
+                "version": "latest",
+                "items": ["samba"]
             }
         },
         "cube-d/":{
             "settings": {
-                "version": "latest"
+                "version": "latest",
+                "items": ["samba"]
             }
         }
     }, 
